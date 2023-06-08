@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WInUIAccessibilityUno.Pages.NoAutomation"
+    x:Class="WInUIAccessibilityUno.Pages.AutomationNames"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
+
     <Page.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="0,0,0,8" />
@@ -39,7 +40,8 @@
         <Image
             Grid.ColumnSpan="2"
             Height="50"
-            Source="ms-appx:///WInUIAccessibilityUno/Assets/logo-winui.png"
+            AutomationProperties.Name="An image of the WinUI Logo"
+            Source="ms-appx:///WinUIAccessibilityUno/Assets/logo-winui.png"
             Stretch="Uniform" />
 
         <TextBlock
@@ -52,22 +54,26 @@
             Text="Personal Information" />
 
         <TextBlock
+            x:Name="FirstNameLabel"
             Grid.Row="3"
             VerticalAlignment="Center"
-            Text="First Name:" />
+            Text="First Name" />
         <TextBox
             x:Name="txtFirstName"
             Grid.Row="3"
-            Grid.Column="1" />
+            Grid.Column="1"
+            AutomationProperties.LabeledBy="{x:Bind FirstNameLabel}" />
 
         <TextBlock
+            x:Name="LastNameLabel"
             Grid.Row="4"
             VerticalAlignment="Center"
-            Text="Last Name:" />
+            Text="Last Name" />
         <TextBox
             x:Name="txtLastName"
             Grid.Row="4"
-            Grid.Column="1" />
+            Grid.Column="1"
+            AutomationProperties.LabeledBy="{x:Bind LastNameLabel}" />
 
         <TextBlock
             Grid.Row="7"
@@ -75,28 +81,33 @@
             Text="Address Information" />
 
         <TextBlock
+            x:Name="AddressLabel"
             Grid.Row="8"
             VerticalAlignment="Center"
-            Text="Address:" />
+            Text="Address" />
         <TextBox
             x:Name="txtAddress"
             Grid.Row="8"
-            Grid.Column="1" />
+            Grid.Column="1"
+            AutomationProperties.LabeledBy="{x:Bind AddressLabel}" />
 
         <TextBlock
+            x:Name="StateLabel"
             Grid.Row="9"
             VerticalAlignment="Center"
-            Text="State:" />
+            Text="State" />
         <ComboBox
             x:Name="comboStates"
             Grid.Row="9"
             Grid.Column="1"
+            AutomationProperties.LabeledBy="{x:Bind StateLabel}"
             ItemsSource="{x:Bind States}" />
 
         <TextBlock
+            x:Name="StatusLabel"
             Grid.Row="10"
             VerticalAlignment="Center"
-            Text="Status:" />
+            Text="Status" />
         <StackPanel Grid.Row="10" Grid.Column="1">
             <RadioButton GroupName="Status">Active</RadioButton>
             <RadioButton GroupName="Status">In-active</RadioButton>
@@ -107,8 +118,12 @@
             Grid.Row="11"
             Grid.ColumnSpan="2"
             Height="5"
+            AutomationProperties.AccessibilityView="Raw"
             Source="ms-appx:///WinUIAccessibilityUno/Assets/Banner.png"
             Stretch="Fill" />
+
+        <!--  To have a reader ignore the an element  -->
+        <!--  AutomationProperties.AccessibilityView="Raw"  -->
 
         <StackPanel
             Grid.Row="12"
@@ -120,6 +135,7 @@
             <Image
                 Height="24"
                 Margin="0,0,5,0"
+                AutomationProperties.Name="Folder Icon"
                 Source="ms-appx:///WinUIAccessibilityUno/Assets/FolderIcon.png"
                 Stretch="Uniform" />
             <TextBlock Text="C:\Program Files" />

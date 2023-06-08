@@ -1,13 +1,27 @@
-﻿namespace WInUIAccessibilityUno.Pages
+﻿// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
+using Microsoft.Xaml.Interactivity;
+
+namespace WInUIAccessibilityUno.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class NoAutomation : Page
+    public sealed partial class AriaAttributes : Page
     {
-        public NoAutomation()
+        public AriaAttributes()
         {
             this.InitializeComponent();
+            this.Loaded += AriaAttributes_Loaded;
+        }
+
+        private void AriaAttributes_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach(var child in ContentRoot.Children)
+            {
+                var behavior = new AriaBehavior();
+                Interaction.GetBehaviors(child).Add(behavior);
+            }
         }
 
         public string[] States = {
@@ -36,3 +50,4 @@
         }
     }
 }
+

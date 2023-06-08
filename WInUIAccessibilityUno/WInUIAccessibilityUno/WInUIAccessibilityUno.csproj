@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">$(TargetFrameworks);net7.0-windows10.0.19041</TargetFrameworks>
 		<TargetFrameworks>$(TargetFrameworks);net7.0;</TargetFrameworks>
@@ -55,10 +55,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Pages\NoAutomation.xaml" />
+		<None Remove="Pages\AriaAttributes.xaml" />
+		<None Remove="Pages\AutomationLabeledBy.xaml" />
+		<None Remove="Pages\AutomationLandmarksAndHeadings.xaml" />
+		<None Remove="Pages\AutomationNames.xaml" />
+		<None Remove="Pages\AutomationSets.xaml" />
+		<None Remove="Pages\NoAutomation.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <UpToDateCheckInput Remove="Pages\NoAutomation.xaml" />
+		<UpToDateCheckInput Remove="Pages\AriaAttributes.xaml" />
+		<UpToDateCheckInput Remove="Pages\AutomationLabeledBy.xaml" />
+		<UpToDateCheckInput Remove="Pages\AutomationLandmarksAndHeadings.xaml" />
+		<UpToDateCheckInput Remove="Pages\AutomationNames.xaml" />
+		<UpToDateCheckInput Remove="Pages\AutomationSets.xaml" />
+		<UpToDateCheckInput Remove="Pages\NoAutomation.xaml" />
 	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows10.0.19041'">
+		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' != 'net7.0-windows10.0.19041'">
+		<PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
+		<PackageReference Include="Uno.WinUI.WebAssembly" />
+	</ItemGroup>
+
 </Project>
