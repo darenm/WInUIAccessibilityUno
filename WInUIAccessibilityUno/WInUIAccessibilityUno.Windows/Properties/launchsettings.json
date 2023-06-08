@@ -1,0 +1,10 @@
+{
+  "profiles": {
+	"WInUIAccessibilityUno.Windows (Package)": {
+	  "commandName": "MsixPackage"
+	},
+	"WInUIAccessibilityUno.Windows (Unpackaged)": {
+	  "commandName": "Project"
+	}
+  }
+}

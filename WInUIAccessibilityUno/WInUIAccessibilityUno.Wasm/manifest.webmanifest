@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "WInUIAccessibilityUno",
+  "display": "standalone",
+  "name": "WInUIAccessibilityUno",
+  "short_name": "WInUIAccessibilityUno",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}
