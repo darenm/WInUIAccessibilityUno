@@ -10,7 +10,7 @@
 
     <Page.Resources>
         <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="Margin" Value="0,4,4,4" />
         </Style>
     </Page.Resources>
     <Grid>
@@ -34,7 +34,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition MinWidth="400" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Image

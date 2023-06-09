@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="Margin" Value="0,4,4,4" />
         </Style>
     </Page.Resources>
     <Grid>
@@ -33,13 +33,14 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition MinWidth="400" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Image
-            Grid.ColumnSpan="2"
+            Width="50"
             Height="50"
             Source="ms-appx:///WInUIAccessibilityUno/Assets/logo-winui.png"
+            Visibility="Visible"
             Stretch="Uniform" />
 
         <TextBlock
@@ -106,6 +107,7 @@
         <Image
             Grid.Row="11"
             Grid.ColumnSpan="2"
+            Width="1000"
             Height="5"
             Source="ms-appx:///WinUIAccessibilityUno/Assets/Banner.png"
             Stretch="Fill" />
@@ -118,6 +120,7 @@
             BorderThickness="1"
             Orientation="Horizontal">
             <Image
+                Width="24"
                 Height="24"
                 Margin="0,0,5,0"
                 Source="ms-appx:///WinUIAccessibilityUno/Assets/FolderIcon.png"

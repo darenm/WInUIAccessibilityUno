@@ -72,13 +72,23 @@
 		<UpToDateCheckInput Remove="Pages\NoAutomation.xaml" />
 	</ItemGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<DefineConstants>WASM</DefineConstants>
+	</PropertyGroup>
+	<!--<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<ProjectReference Include="..\..\WinUIAccessibilityUno.WasmLib\WinUIAccessibilityUno.WasmLib.csproj" />
+	</ItemGroup>-->
+
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-windows10.0.19041'">
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' != 'net7.0-windows10.0.19041'">
-		<PackageReference Include="Uno.Microsoft.Xaml.Behaviors.WinUI.Managed" />
-		<PackageReference Include="Uno.WinUI.WebAssembly" />
+		<PackageReference Include="Uno.WinUI.Runtime.WebAssembly" />
+		<PackageReference Include="Uno.Microsoft.Xaml.Behaviors.Interactivity.WinUI" />
+		<PackageReference Include="Uno.CommunityToolkit.WinUI.UI.Behaviors" />
 	</ItemGroup>
+
 
 </Project>

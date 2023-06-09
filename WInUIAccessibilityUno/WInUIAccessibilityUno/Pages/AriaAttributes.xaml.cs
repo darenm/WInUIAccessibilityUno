@@ -17,10 +17,19 @@ namespace WInUIAccessibilityUno.Pages
 
         private void AriaAttributes_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach(var child in ContentRoot.Children)
+            IteratePanelChildren(ContentRoot);
+        }
+
+        private void IteratePanelChildren(Panel p)
+        {
+            foreach (var child in p.Children)
             {
                 var behavior = new AriaBehavior();
                 Interaction.GetBehaviors(child).Add(behavior);
+                if (child is Panel panel)
+                {
+                    IteratePanelChildren(panel);                
+                }
             }
         }
 

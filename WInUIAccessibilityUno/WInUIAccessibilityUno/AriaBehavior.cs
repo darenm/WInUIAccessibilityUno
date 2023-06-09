@@ -5,6 +5,7 @@ namespace WInUIAccessibilityUno
 {
     public class AriaBehavior : SafeBehaviorBase<FrameworkElement>
     {
+        private const string _defaultImageLabel = "Image";
         private static class ElementTypes
         {
             internal const string Input = "INPUT";
@@ -35,7 +36,7 @@ namespace WInUIAccessibilityUno
         {
             base.OnSetup();
 
-#if !WINDOWS
+#if WASM
 
             if (AssociatedObject.IsLoaded)
             {
@@ -55,12 +56,12 @@ namespace WInUIAccessibilityUno
 
         private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
         {
-#if !WINDOWS
+#if WASM
             AssociatedObject.Loaded -= AssociatedObject_Loaded;
             updateLabel();
 #endif
         }
-#if !WINDOWS
+#if WASM
 
 
         private string _js(string alt) => @"function ariaFindChildType(parent, childType) {
@@ -97,6 +98,8 @@ function ariaIgnoreDecorativeImage(parent) {
             var elementTypes = new List<string>();
             var elementId = AssociatedObject.GetHtmlId();
             // Some initial attempts to resolve a label for the element
+            var name = AutomationProperties.GetName(AssociatedObject);
+
             switch (AssociatedObject)
             {
                 case PasswordBox passwordBox:
@@ -107,7 +110,7 @@ function ariaIgnoreDecorativeImage(parent) {
                 case TextBox textBox:
                     elementTypes.Add(ElementTypes.Input);
                     elementTypes.Add(ElementTypes.TextArea);
-                    labelText = string.IsNullOrEmpty(textBox.PlaceholderText) ? "Text" : textBox.PlaceholderText;
+                    labelText = string.IsNullOrEmpty(textBox.PlaceholderText) ? name : textBox.PlaceholderText;
                     break;
 
                 case CheckBox checkBox:
@@ -121,9 +124,24 @@ function ariaIgnoreDecorativeImage(parent) {
                     }
                     break;
 
+                case RadioButton radioButton:
+                    elementTypes.Add(ElementTypes.Input);
+                    if (!string.IsNullOrEmpty(radioButton.Content.ToString()))
+                    {
+                        if (radioButton.Content is TextBlock checkBoxTextBlock)
+                        {
+                            labelText = $"RadioButton, {checkBoxTextBlock.Text}";
+                        }
+                        else
+                        {
+                            labelText = radioButton.Content.ToString();
+                        }
+                    }
+                    break;
+
                 case Image image:
                     elementTypes.Add(ElementTypes.Image);
-                    labelText = "Image";
+                    labelText = _defaultImageLabel;
                     break;
 
                 default:
@@ -146,9 +164,8 @@ function ariaIgnoreDecorativeImage(parent) {
                 }
             }
 
-            if (string.IsNullOrEmpty(labelText))
+            if (string.IsNullOrEmpty(labelText) || labelText == _defaultImageLabel)
             {
-                var name = AutomationProperties.GetName(AssociatedObject);
                 if (!string.IsNullOrEmpty(name))
                 {
                     labelText = name;
