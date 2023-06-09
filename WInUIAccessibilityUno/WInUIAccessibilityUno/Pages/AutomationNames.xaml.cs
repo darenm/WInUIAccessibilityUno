@@ -1,11 +1,13 @@
-﻿namespace WInUIAccessibilityUno.Pages
+﻿// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace WInUIAccessibilityUno.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class NoAutomation : Page
+    public sealed partial class AutomationNames : Page
     {
-        public NoAutomation()
+        public AutomationNames()
         {
             this.InitializeComponent();
         }

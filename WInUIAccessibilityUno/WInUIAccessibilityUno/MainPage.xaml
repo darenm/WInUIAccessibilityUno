@@ -10,21 +10,24 @@
 
     <NavigationView
         x:Name="RootNavigation"
+        AutomationProperties.LandmarkType="Navigation"
         IsBackButtonVisible="Collapsed"
         IsSettingsVisible="False"
         SelectionChanged="RootNavigation_SelectionChanged">
         <NavigationView.MenuItems>
             <NavigationViewItem IsSelected="True" Tag="NoAutomation">No Accessibility</NavigationViewItem>
-            <NavigationViewItem Tag="AccessibilityTreeSample">Automation tree and views</NavigationViewItem>
-            <NavigationViewItem Tag="LandmarksHeadingsSample">Landmarks and headings</NavigationViewItem>
-            <NavigationViewItem Tag="SetsAccessibilitySample">Sets of elements</NavigationViewItem>
-            <NavigationViewItem Tag="AutomationPeerReadme">AutomationPeers</NavigationViewItem>
+            <NavigationViewItem Tag="AutomationLabeledBy">Automation Labeled By</NavigationViewItem>
+            <NavigationViewItem Tag="AutomationNames">Automation Names</NavigationViewItem>
+            <NavigationViewItem Tag="AutomationLandmarksAndHeadings">Landmarks and Headings</NavigationViewItem>
+            <NavigationViewItem Tag="AutomationSets">Sets</NavigationViewItem>
+            <NavigationViewItem Tag="AriaAttributes">Aria Attributes for Web</NavigationViewItem>
         </NavigationView.MenuItems>
         <ScrollViewer Padding="24,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <Frame
                 x:Name="NavigationFrame"
                 MaxWidth="700"
-                HorizontalAlignment="Left" />
+                HorizontalAlignment="Left"
+                AutomationProperties.LandmarkType="Form" />
         </ScrollViewer>
     </NavigationView>
 </Page>
